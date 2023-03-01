@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import com.app.login.result.Result;
 import com.app.login.result.ServerError;
 import com.app.login.result.Success;
-import com.app.login.util.internalization.Translator;
+import com.app.login.util.internationalization.Translator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.app.login.exception.InvalidCountryCodeException;
@@ -80,11 +80,11 @@ public class LoginService {
                         translator.toLocale("error_valid_otp")
                 );
             }
-            result = Optional.ofNullable(repositoryImpl.generateCustomerIdAfterVerifyingOTP(
+            result = repositoryImpl.generateCustomerIdAfterVerifyingOTP(
                         otpToken,
                         otp,
                         firebaseToken
-                    ))
+                    )
                     .map((Function<String, Result<String>>) Success::new)
                     .orElse(new ServerError(new InvalidOTPException(
                             translator.toLocale("error_valid_otp")

@@ -1,4 +1,4 @@
-package com.app.login.util.internalization;
+package com.app.login.util.internationalization;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

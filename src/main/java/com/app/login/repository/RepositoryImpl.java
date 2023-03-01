@@ -46,7 +46,7 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public String generateCustomerIdAfterVerifyingOTP(String otpToken, String otpCode, String firebaseToken) {
+    public Optional<String> generateCustomerIdAfterVerifyingOTP(String otpToken, String otpCode, String firebaseToken) {
         return Optional.ofNullable(
                 databaseDataSourceImpl
                         .isTokenAndOtpCodeAvailable(otpToken, Integer.parseInt(otpCode))
@@ -72,8 +72,7 @@ public class RepositoryImpl implements Repository {
                                         asList(new FirebaseToken(firebaseToken)),
                                         mobile
                                 )))
-                ))
-                .orElse(null);
+                ));
     }
 
     @Override
